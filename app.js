@@ -25,6 +25,11 @@ app.use(bodyParser.json());
 var appRoutes = require('./rutas/app');
 var usuarioRoutes = require('./rutas/usuario');
 var loginRoutes = require('./rutas/login');
+var hospitalRoutes = require('./rutas/hospital');
+var medicoRoutes = require('./rutas/medico');
+var busquedaRoutes = require('./rutas/busqueda');
+var uploadRoutes = require('./rutas/upload');
+var imagenesRoutes = require('./rutas/imagenes');
 
 mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB',
            (err, res) => {
@@ -35,9 +40,19 @@ mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB',
 
            });
 
+// var serveIndex = require('serve-index');
+// app.use(express.static(__dirname + '/'));
+// app.use('/uploads',serveIndex(__dirname + '/uploads'));
+
+
 //Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/login', loginRoutes);
+app.use('/hospital', hospitalRoutes);
+app.use('/medico', medicoRoutes);
+app.use('/busqueda', busquedaRoutes);
+app.use('/upload', uploadRoutes);
+app.use('/imagenes',imagenesRoutes);
 app.use('/',appRoutes);
 
 
